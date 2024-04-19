@@ -1,66 +1,69 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV4/main/Source.lua"))()
 local Window = lib:MakeWindow({
-  Title = "Tw and Rave Dh : V1",
-  SubTitle = "by : TWRAVE",
-  LoadText = "TwRaveHub",
-  Flags = "TwRave Hub | Example.lua"
+    Title = "Tw and Rave Dh : V1",
+    SubTitle = "by : TWRAVE",
+    LoadText = "TwRaveHub",
+    Flags = "TwRave Hub | Example.lua"
 })
 
 -- MAIN PAGE
 local Main = Window:MakeTab({Name = "Main", Icon = "Home"})
 local Section = Main:AddSection({"Main Section"})
 
-local Toggle = Tab:AddToggle({
+local Toggle = Main:AddToggle({
     Name = "Esp",
     Default = false,
     Callback = function(Value)
-      
-    end
+        if Value then
+            local Players = game:GetService("Players"):GetChildren()
+            local RunService = game:GetService("RunService")
+            local highlight = Instance.new("Highlight")
+            highlight.Name = "Highlight"
 
-    local Players = game:GetService("Players"):GetChildren()
-local RunService = game:GetService("RunService")
-local highlight = Instance.new("Highlight")
-highlight.Name = "Highlight"
+            for i, v in pairs(Players) do
+                repeat wait() until v.Character
+                if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+                    local highlightClone = highlight:Clone()
+                    highlightClone.Adornee = v.Character
+                    highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+                    highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    highlightClone.Name = "Highlight"
+                end
+            end
 
-for i, v in pairs(Players) do
-    repeat wait() until v.Character
-    if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-        local highlightClone = highlight:Clone()
-        highlightClone.Adornee = v.Character
-        highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
-        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-        highlightClone.Name = "Highlight"
-    end
-end
+            game.Players.PlayerAdded:Connect(function(player)
+                repeat wait() until player.Character
+                if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+                    local highlightClone = highlight:Clone()
+                    highlightClone.Adornee = player.Character
+                    highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+                    highlightClone.Name = "Highlight"
+                end
+            end)
 
-game.Players.PlayerAdded:Connect(function(player)
-    repeat wait() until player.Character
-    if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-        local highlightClone = highlight:Clone()
-        highlightClone.Adornee = player.Character
-        highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
-        highlightClone.Name = "Highlight"
-    end
-end)
+            game.Players.PlayerRemoving:Connect(function(playerRemoved)
+                playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+            end)
 
-game.Players.PlayerRemoving:Connect(function(playerRemoved)
-    playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
-end)
-
-RunService.Heartbeat:Connect(function()
-    for i, v in pairs(Players) do
-        repeat wait() until v.Character
-        if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-            local highlightClone = highlight:Clone()
-            highlightClone.Adornee = v.Character
-            highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
-            highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-            highlightClone.Name = "Highlight"
-            task.wait()
+            RunService.Heartbeat:Connect(function()
+                for i, v in pairs(Players) do
+                    repeat wait() until v.Character
+                    if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+                        local highlightClone = highlight:Clone()
+                        highlightClone.Adornee = v.Character
+                        highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+                        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                        highlightClone.Name = "Highlight"
+                        task.wait()
+                    end
+                end
+            end)
+        else
+            -- Add code to disable ESP if needed
         end
-end
-end)
-  })
+    end
+})
+
   
 
 local Button = Main:AddButton({
