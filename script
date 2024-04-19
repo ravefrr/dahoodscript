@@ -1,72 +1,30 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV4/main/Source.lua"))()
 local Window = lib:MakeWindow({
-    Title = "Tw and Rave Dh : V1",
-    SubTitle = "by : TWRAVE",
-    LoadText = "TwRaveHub",
-    Flags = "TwRave Hub | Example.lua"
+  Title = "Tw and Rave Dh : V1",
+  SubTitle = "by : TWRAVE",
+  LoadText = "TwRaveHub",
+  Flags = "TwRave Hub | Example.lua"
 })
+
+local Notify = Library:MakeNotify({
+  Title = "Successfully Loaded",
+  Text = "TWRAVE Dahood V0.2✅️",
+  Time = 5
+})
+
+
 
 -- MAIN PAGE
 local Main = Window:MakeTab({Name = "Main", Icon = "Home"})
 local Section = Main:AddSection({"Main Section"})
+local Paragraph = Main:AddParagraph({"Currently Under Development( ALPHA )", "Info"})
 
-local Toggle = Main:AddToggle({
-    Name = "Esp",
-    Default = false,
-    Callback = function(Value)
-        if Value then
-            local Players = game:GetService("Players"):GetChildren()
-            local RunService = game:GetService("RunService")
-            local highlight = Instance.new("Highlight")
-            highlight.Name = "Highlight"
 
-            for i, v in pairs(Players) do
-                repeat wait() until v.Character
-                if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-                    local highlightClone = highlight:Clone()
-                    highlightClone.Adornee = v.Character
-                    highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
-                    highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    highlightClone.Name = "Highlight"
-                end
-            end
 
-            game.Players.PlayerAdded:Connect(function(player)
-                repeat wait() until player.Character
-                if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-                    local highlightClone = highlight:Clone()
-                    highlightClone.Adornee = player.Character
-                    highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
-                    highlightClone.Name = "Highlight"
-                end
-            end)
-
-            game.Players.PlayerRemoving:Connect(function(playerRemoved)
-                playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
-            end)
-
-            RunService.Heartbeat:Connect(function()
-                for i, v in pairs(Players) do
-                    repeat wait() until v.Character
-                    if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
-                        local highlightClone = highlight:Clone()
-                        highlightClone.Adornee = v.Character
-                        highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
-                        highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                        highlightClone.Name = "Highlight"
-                        task.wait()
-                    end
-                end
-            end)
-        else
-            -- Add code to disable ESP if needed
-        end
-    end
-})
-
-  
-
-local Button = Main:AddButton({
+-- AIMBOT PAGE
+local Aimbot = Window:MakeTab({Name = "Aimbot", Icon = "Settings"})
+local Section = Aimbot:AddSection({"Aimbot Section"})
+local Button = Aimbot:AddButton({
   Name = "Aimbot",
   Callback = function()
     getgenv().Settings = {
@@ -80,7 +38,6 @@ local Button = Main:AddButton({
         RESOVLER = true,
     }
 }
-
  
 local SelectedPart = "HumanoidRootPart"
 local Prediction = true
@@ -423,3 +380,72 @@ TargetVelv5.Velocity = Vector3.new(TargetVelv5.Velocity.X, math.abs(TargetVelv5.
 end)
   end
 })
+-- SILENT AIM
+
+local plr = game:GetService("Players")
+GetNear = function()
+    local SavePos
+    local OldDistance = math.huge
+    for _, PlrName in ipairs(plr:GetPlayers()) do
+        if PlrName ~= plr.LocalPlayer then
+            local plrChar = PlrName.Character
+            if plrChar then
+                if plrChar:FindFirstChild("HumanoidRootPart") then
+                    local distance = (plrChar:FindFirstChild("HumanoidRootPart").Position - plr.LocalPlayer:GetMouse().Hit.p).Magnitude
+                    if distance < OldDistance then
+                        OldDistance = distance
+                        SavePos = PlrName
+                    end
+                end
+            end
+        end
+    end
+    return SavePos
+end
+Aimbot:AddToggle({
+    Name = "Silent Aim Neareast",
+    Default = false,
+    Callback = function(Val)
+    _G.SilentAim = Val
+    task.spawn(function() 
+        while true do
+            local NearPos = GetNear()
+            if NearPos then
+                if NearPos.Character then
+                    if NearPos.Character:FindFirstChild("HumanoidRootPart") then
+                        plr.LocalPlayer:GetMouse().Target = NearPos.Character:FindFirstChild("HumanoidRootPart")
+                    end
+                end
+            end
+            task.wait()
+        end
+    end)
+end})
+
+
+-- SETTING TAB 
+
+local Settings = Window:MakeTab({Name = "Settings", Icon = "Settings"})
+local Section = Settings:AddSection({"Important Settings"})
+local function BypassAC()
+    local OldHook 
+    OldHook = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
+        local Vals = {...}
+        local Functions = {"TeleportDetect","CHECKER_1","CHECKER","GUI_CHECK","OneMoreTime","checkingSPEED","BANREMOTE","PERMAIDBAN","KICKREMOTE","BR_KICKPC","BR_KICKMOBILE"}
+        for _, FuncName in ipairs(Functions) do
+            if tostring(Vals[1]) == FuncName then
+                return
+            end
+        end
+        return OldHook(self, ...)
+    end))
+end
+Settings:AddToggle({
+    Name = "Bypass Anti-Cheat",
+    Default = true,
+    Callback = function()
+      task.spawn(function()
+        BypassAC()
+      end)
+  end}) 
+
