@@ -421,43 +421,13 @@ Aimbot:AddToggle({
     end)
 end})
 
--- MOVEMENT TAB
-local Tab = Window:MakeTab({Name = "Movement", Icon = "Home"})
-local Section = Movement:AddSection({"Movement Settings"})
-local Slider = Movement:AddSlider({
-    Name = "Walk Speed",
-    MinValue = 1,
-    MaxValue = 10,
-    Default = 5,
-    Increase = 1,
-    Callback = function(Value)
+-- ESP
+local Button = Aimbot:AddButton({
+    Name = "ESP",
+    Callback = function()
+
+        loadstring(game:HttpGet("https://github.com/ravefrr/boxesptst/raw/main/sssss", true))()
       
     end
   })
-
-
--- SETTING TAB 
-
-local Settings = Window:MakeTab({Name = "Settings", Icon = "Settings"})
-local Section = Settings:AddSection({"Important Settings"})
-local function BypassAC()
-    local OldHook 
-    OldHook = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
-        local Vals = {...}
-        local Functions = {"TeleportDetect","CHECKER_1","CHECKER","GUI_CHECK","OneMoreTime","checkingSPEED","BANREMOTE","PERMAIDBAN","KICKREMOTE","BR_KICKPC","BR_KICKMOBILE"}
-        for _, FuncName in ipairs(Functions) do
-            if tostring(Vals[1]) == FuncName then
-                return
-            end
-        end
-        return OldHook(self, ...)
-    end))
-end
-Settings:AddToggle({
-    Name = "Bypass Anti-Cheat",
-    Default = true,
-    Callback = function()
-      task.spawn(function()
-        BypassAC()
-      end)
-  end}) 
+  
