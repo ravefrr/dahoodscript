@@ -421,7 +421,252 @@ Aimbot:AddToggle({
     end)
 end})
 
+-- ESP BUTTON
+local Aimbot = Aimbot:AddButton({
+    Name = "ESP",
+    Callback = function()
+        local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
+
+        if playerGui:FindFirstChild("TW.RV") then
+            playerGui:FindFirstChild("TW.RV"):Destroy()
+        
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                local billboardGui = player.Character and player.Character:FindFirstChild("Head") and player.Character.Head:FindFirstChild("PlayerBillboardGui")
+                if billboardGui then
+                    billboardGui:Destroy()
+                end
+            end
+        end
+        
+
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = "TW.RV"
+        screenGui.Parent = playerGui
+        screenGui.DisplayOrder = 1
+        
+
+        local holder = Instance.new("Frame")
+        holder.Name = "Holder"
+        holder.Parent = screenGui
+        holder.Size = UDim2.new(0, 200, 0, 100) 
+        holder.Position = UDim2.new(0.5, -100, 0.5, -50) 
+        holder.BackgroundColor3 = Color3.new(0, 0, 0) 
+        holder.BackgroundTransparency = 0.5 
+        holder.Draggable = true 
+        holder.Active = true
+        
+
+        local holderTopLeft = Instance.new("UICorner")
+        holderTopLeft.CornerRadius = UDim.new(0, 10)
+        holderTopLeft.Parent = holder
+        
+        local holderTopRight = holderTopLeft:Clone()
+        holderTopRight.Parent = holder
+        holderTopRight.CornerRadius = UDim.new(0, 0)
+        holderTopRight.Name = "holderTopRight"
+        holderTopRight.Parent = holderTopLeft
+        
+        local holderBottomLeft = holderTopLeft:Clone()
+        holderBottomLeft.Parent = holder
+        holderBottomLeft.CornerRadius = UDim.new(0, 0)
+        holderBottomLeft.Name = "holderBottomLeft"
+        holderBottomLeft.Parent = holderTopLeft
+        
+        local holderBottomRight = holderTopLeft:Clone()
+        holderBottomRight.Parent = holder
+        holderBottomRight.CornerRadius = UDim.new(0, 0)
+        holderBottomRight.Name = "holderBottomRight"
+        holderBottomRight.Parent = holderTopLeft
+
+        local closeButton = Instance.new("TextButton")
+        closeButton.Name = "CloseButton"
+        closeButton.Text = "X"
+        closeButton.Parent = holder
+        closeButton.Size = UDim2.new(0, 20, 0, 20) 
+        closeButton.Position = UDim2.new(1, -25, 0, 5) 
+        closeButton.BackgroundColor3 = Color3.new(1, 0, 0) 
+        closeButton.TextColor3 = Color3.new(1, 1, 1) 
+        closeButton.TextScaled = true 
+        closeButton.BorderSizePixel = 0
+        closeButton.Font = Enum.Font.Gotham 
+        closeButton.TextSize = 18 
+        
+
+        local function onCloseButtonClicked()
+            screenGui:Destroy() 
+        end
+        
+        closeButton.MouseButton1Click:Connect(onCloseButtonClicked)
+        
+
+        local closeButtonCorner = Instance.new("UICorner")
+        closeButtonCorner.CornerRadius = UDim.new(0, 10)
+        closeButtonCorner.Parent = closeButton
+        
+
+        local minimizeButton = Instance.new("TextButton")
+        minimizeButton.Name = "MinimizeButton"
+        minimizeButton.Text = "-"
+        minimizeButton.Parent = holder
+        minimizeButton.Size = UDim2.new(0, 20, 0, 20) 
+        minimizeButton.Position = UDim2.new(1, -50, 0, 5)
+        minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) 
+        minimizeButton.TextColor3 = Color3.new(1, 1, 1) 
+        minimizeButton.TextScaled = true 
+        minimizeButton.BorderSizePixel = 0 
+        minimizeButton.Font = Enum.Font.Gotham 
+        minimizeButton.TextSize = 18 
+        
+
+        local minimizeButtonCorner = Instance.new("UICorner")
+        minimizeButtonCorner.CornerRadius = UDim.new(0, 10)
+        minimizeButtonCorner.Parent = minimizeButton
+        
+
+        local titleLabel = Instance.new("TextLabel")
+        titleLabel.Name = "TitleLabel"
+        titleLabel.Text = "TW.RV"
+        titleLabel.TextScaled = true
+        titleLabel.Parent = holder
+        titleLabel.Size = UDim2.new(1, 0, 0.5, 0) 
+        titleLabel.BackgroundColor3 = Color3.new(0, 0, 0) 
+        titleLabel.TextColor3 = Color3.new(1, 0, 0) 
+        titleLabel.BackgroundTransparency = 0.5
+        
+
+        local titleLabelCorner = Instance.new("UICorner")
+        titleLabelCorner.CornerRadius = UDim.new(0, 0)
+        titleLabelCorner.Parent = titleLabel
+        
+
+        local statusLabel = Instance.new("TextLabel")
+        statusLabel.Name = "StatusLabel"
+        statusLabel.Text = "IF YOU CLOSE THIS TAB YOU WILL HAVE TO REJOIN FOR ESP TO WORK"
+        statusLabel.Parent = holder
+        statusLabel.Size = UDim2.new(1, 0, 0.25, 0) 
+        statusLabel.Position = UDim2.new(0, 0, 0.5, 0)
+        statusLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+        statusLabel.TextColor3 = Color3.new(1, 0, 0) 
+        statusLabel.BackgroundTransparency = 0.5 
+        statusLabel.TextScaled = true 
+        
+
+        local statusLabelCorner = Instance.new("UICorner")
+        statusLabelCorner.CornerRadius = UDim.new(0, 0)
+        statusLabelCorner.Parent = statusLabel
+        
+
+        local statusButton = Instance.new("TextButton")
+        statusButton.Name = "StatusButton"
+        statusButton.Text = "Off"
+        statusButton.Parent = holder
+        statusButton.Size = UDim2.new(1, 0, 0.25, 0) 
+        statusButton.Position = UDim2.new(0, 0, 0.75, 0) 
+        statusButton.BackgroundColor3 = Color3.new(0, 0, 0)
+        statusButton.TextColor3 = Color3.new(1, 1, 1) 
+        statusButton.BackgroundTransparency = 0.5
+        statusButton.TextScaled = true 
+        
+
+        local statusButtonCorner = Instance.new("UICorner")
+        statusButtonCorner.CornerRadius = UDim.new(0, 0)
+        statusButtonCorner.Parent = statusButton
+        
+
+        local function createBillboardGuiForPlayer(player, distance)
+            local billboardGui = Instance.new("BillboardGui")
+            billboardGui.Name = "PlayerBillboardGui"
+            billboardGui.Adornee = player.Character.Head
+            billboardGui.Size = UDim2.new(0, 100, 0, 50) 
+            billboardGui.StudsOffset = Vector3.new(0, 2, 0) 
+            billboardGui.AlwaysOnTop = true
+            billboardGui.LightInfluence = 1
+            billboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            billboardGui.Parent = player.Character.Head
+        
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Name = "PlayerNameLabel"
+            textLabel.Text = player.Name .. "\nDistance: " .. math.floor(distance)
+            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.BackgroundTransparency = 1 
+            textLabel.TextColor3 = Color3.new(1, 0, 0) 
+            textLabel.TextScaled = true
+            textLabel.TextStrokeColor3 = Color3.new(0, 0, 0) 
+            textLabel.TextStrokeTransparency = 0 
+            textLabel.Visible = statusButton.Text == "On"
+            textLabel.Parent = billboardGui
+        end
+        
+
+        local function updatePlayerESP()
+            local localCharacter = game.Players.LocalPlayer.Character
+            if not localCharacter then
+                return
+            end
+        
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+                    local distance = (localCharacter.Head.Position - player.Character.Head.Position).Magnitude
+                    local billboardGui = player.Character.Head:FindFirstChild("PlayerBillboardGui")
+                    if billboardGui then
+                        billboardGui.PlayerNameLabel.Text = player.Name .. "\nDistance: " .. math.floor(distance)
+                        billboardGui.PlayerNameLabel.TextColor3 = Color3.new(1, 0, 0) 
+                        billboardGui.PlayerNameLabel.Visible = statusButton.Text == "On"
+                    else
+                        createBillboardGuiForPlayer(player, distance)
+                    end
+                end
+            end
+        end
+        
+
+        updatePlayerESP()
+        game:GetService("RunService").Heartbeat:Connect(function()
+            updatePlayerESP()
+        end)
+        
+
+        local isMinimized = false
+        local function onMinimizeButtonClicked()
+            isMinimized = not isMinimized
+            holder.Size = isMinimized and UDim2.new(0, 200, 0, 25) or UDim2.new(0, 200, 0, 100)
+            titleLabel.Visible = not isMinimized
+            statusLabel.Visible = not isMinimized
+            statusButton.Visible = not isMinimized
+        end
+        
+        minimizeButton.MouseButton1Click:Connect(onMinimizeButtonClicked)
+        
+
+        local function onStatusButtonClicked()
+            if statusButton.Text == "Off" then
+                statusButton.Text = "On"
+
+            else
+                statusButton.Text = "Off"
+
+                
+
+                for _, player in ipairs(game.Players:GetPlayers()) do
+                    local billboardGui = player.Character and player.Character:FindFirstChild("Head") and player.Character.Head:FindFirstChild("PlayerBillboardGui")
+                    if billboardGui then
+                        billboardGui:Destroy()
+                    end
+                end
+            end
+
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                local billboardGui = player.Character and player.Character:FindFirstChild("Head") and player.Character.Head:FindFirstChild("PlayerBillboardGui")
+                if billboardGui then
+                    billboardGui.PlayerNameLabel.Visible = statusButton.Text == "On"
+                end
+            end
+        end
+        
+        statusButton.MouseButton1Click:Connect(onStatusButtonClicked)
+    end
+  })
 
 -- MOVEMENT TAB
 local Movement = Window:MakeTab({Name = "Movement", Icon = "Settings"})
