@@ -678,7 +678,29 @@ local Slider = Movement:AddSlider({
     Default = 5,
     Increase = 1,
     Callback = function(Value)
-      
+        
+        -- Function to clamp a value between a minimum and maximum
+local function clamp(value, min, max)
+    return math.min(math.max(value, min), max)
+end
+
+-- Function to set the player's walk speed based on a scale from 1 to 10
+local function setWalkSpeed(player, scale)
+    local minSpeed = 16 -- Minimum walk speed in Roblox
+    local maxSpeed = 80 -- Maximum walk speed in Roblox
+
+    local clampedScale = clamp(scale, 1, 10) -- Clamp the scale between 1 and 10
+    local walkSpeed = minSpeed + ((maxSpeed - minSpeed) / 10) * clampedScale -- Calculate the walk speed
+
+    player.Character.Humanoid.WalkSpeed = walkSpeed -- Set the walk speed
+end
+
+-- Example usage: Set the player's walk speed based on a slider value (1 to 10)
+local player = game.Players.LocalPlayer
+local sliderValue = 5 -- Change this value to adjust the walk speed
+
+setWalkSpeed(player, sliderValue)
+
     end
   })
 
