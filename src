@@ -421,6 +421,20 @@ Aimbot:AddToggle({
     end)
 end})
 
+-- MOVEMENT TAB
+local Tab = Window:MakeTab({Name = "Movement", Icon = "Home"})
+local Section = Movement:AddSection({"Movement Settings"})
+local Slider = Tab:AddSlider({
+    Name = "Slider",
+    MinValue = 1,
+    MaxValue = 10,
+    Default = 5,
+    Increase = 1,
+    Callback = function(Value)
+      
+    end
+  })
+
 
 -- SETTING TAB 
 
