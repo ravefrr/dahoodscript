@@ -423,6 +423,13 @@ end})
 
 -- MOVEMENT TAB
 local Tab = Window:MakeTab({Name = "Movement", Icon = "Settings"})
+local Section = Tab:AddSection({"Movement Settings"})
+local Button = Tab:AddButton({
+    Name = "Test",
+    Callback = function()
+      
+    end
+  })
 
 
 -- SETTING TAB 
