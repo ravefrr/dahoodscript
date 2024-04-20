@@ -421,6 +421,9 @@ Aimbot:AddToggle({
     end)
 end})
 
+-- MOVEMENT TAB
+local Tab = Window:MakeTab({Name = "Movement", Icon = "Settings"})
+
 
 -- SETTING TAB 
 
@@ -446,5 +449,5 @@ Settings:AddToggle({
       task.spawn(function()
         BypassAC()
       end)
-  end}) 
+  end})
 
