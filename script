@@ -424,22 +424,26 @@ end})
 -- MOVEMENT TAB
 local Tab = Window:MakeTab({Name = "Movement", Icon = "Settings"})
 local Section = Tab:AddSection({"Movement Settings"})
-local Slider = Tab:AddSlider({
-    Name = "Slider",
-    MinValue = 1,
-    MaxValue = 10,
-    Default = 5,
-    Increase = 1,
+local Dropdown = Tab:AddDropdown({
+    Name = "Dropdown",
+    Options = {"1", "2", "3"}
+    Default = {"2"}
+    MultSelect = false
     Callback = function(Value)
-
-        Slider:Set(7)
-    
-        Slider:Callback(function(Value)
-          
-        end)
       
     end
   })
+  
+  --[[
+    Dropdown:Set({New Options}, Void)
+    -- Example : {
+      Dropdown:Set({"one", "two", "three"}, true)
+    }
+    
+    Dropdown:Callback(function(Value)
+      
+    end)
+  ]]
 
 
 -- SETTING TAB 
