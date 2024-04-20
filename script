@@ -424,16 +424,6 @@ end})
 -- MOVEMENT TAB
 local Tab = Window:MakeTab({Name = "Movement", Icon = "Home"})
 local Section = Movement:AddSection({"Movement Settings"})
-local Slider = Movement:AddSlider({
-    Name = "Walk speed",
-    MinValue = 1,
-    MaxValue = 10,
-    Default = 5,
-    Increase = 1,
-    Callback = function(Value)
-      
-    end
-  })
 
 -- SETTING TAB 
 
