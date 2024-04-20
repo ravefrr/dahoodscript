@@ -421,8 +421,6 @@ Aimbot:AddToggle({
     end)
 end})
 
--- MOVEMENT TAB
-
 
 -- SETTING TAB 
 
@@ -448,5 +446,4 @@ Settings:AddToggle({
       task.spawn(function()
         BypassAC()
       end)
-  end})
-
+  end}) 
