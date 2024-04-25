@@ -676,9 +676,9 @@ local Aimbot = Aimbot:AddButton({
   })
 
 -- FUN STUFF TAB
-local A = Window:MakeTab({Name = "A", Icon = "Settings"})
-local B = A:AddSection({Name = "Modify your Avatar!"})
-local Button = B:AddButton({
+local Fun = Window:MakeTab({Name = "Fun Stuff", Icon = "Settings"})
+local Section = Fun:AddSection({Name = "Modify your Avatar!"})
+local Button = Fun:AddButton({
     Name = "Tryhard Anims",
     Callback = function()
         while true do
