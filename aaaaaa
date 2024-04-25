@@ -677,7 +677,7 @@ local Aimbot = Aimbot:AddButton({
 
 -- FUN STUFF TAB
 local Fun = Window:MakeTab({Name = "Fun Stuff", Icon = "Settings"})
-local Section = Fun:AddSection({Name = "Modify your Avatar!"})
+local Section = Fun:AddSection({Name = "Modify your Avatar! (Need to click again if respawned)"})
 local Button = Fun:AddButton({
     Name = "Tryhard Anims",
     Callback = function()
@@ -721,6 +721,72 @@ local Button = Fun:AddButton({
     end
 })
 
+local Section = Fun:AddSection({Name = "Trash Talk"})
+local Button = Fun:AddButton({
+    Name = "Trash Talk",
+    Callback = function()
+        local plr = game.Players.LocalPlayer
+        repeat wait() until plr.Character
+        local char = plr.Character
+         
+        local garbage = {
+            "ur bad";
+            "sonney boy";
+            "ez";
+            "my grandma has more skill than you";
+            "seed";
+            "sit son";
+            "trash";
+            "LOL";
+            "LMAO";
+            "imagine being you right now";
+            "xd";
+            "don't try LOL";
+            "you lose";
+            "why do you even try";
+            "I didn't think being this bad was possible";
+            "leave";
+            "no skill";
+            "so sad man.";
+            "bad";
+            "you're nothing";
+            "lol";
+            "so trash";
+            "so bad";
+            "ur salty";
+            "salty";
+            "look he's mad";
+            "cry more";
+            "keep crying";
+            "cry baby";
+            "hahaha I won";
+            "no one likes u";
+            "run 1s seed";
+            "thank you for your time";
+            "you were so close!";
+            "better luck next time!";
+            "rodent";
+            "HAHA";
+            "ill 5-0";
+            "just quit";
+            "time to take out the trash";
+            "did you get worse?";
+            "I'm surprised you haven't quit yet";
+        }
+         
+         
+        function TrashTalk(inputObject, gameProcessedEvent)
+            if inputObject.KeyCode == Enum.KeyCode.J and gameProcessedEvent == false then        
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(
+                garbage[math.random(1,#garbage)],
+                "All"
+            )
+            end
+        end
+         
+        game:GetService("UserInputService").InputBegan:connect(TrashTalk)
+        end
+})
 
 -- SETTING TAB 
 
