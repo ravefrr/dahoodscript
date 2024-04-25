@@ -677,8 +677,8 @@ local Aimbot = Aimbot:AddButton({
 
 -- FUN STUFF TAB
 local FunStuff = Window:MakeTab({Name = "Fun Stuff", Icon = "Settings"})
-local Sectiona = FunStuff:AddSection({Name = "Modify your Avatar!"})
-local Button = Sectiona:AddButton({
+local Section = FunStuff:AddSection({Name = "Modify your Avatar!"})
+local Button = Section:AddButton({
     Name = "Tryhard Anims",
     Callback = function()
         while true do
@@ -700,7 +700,7 @@ local Button = Sectiona:AddButton({
     end
 })
 
-local Button = Sectiona:AddButton({
+local Button = Section:AddButton({
     Name = "Headless (CS)",
     Callback = function()
 
@@ -712,7 +712,7 @@ local Button = Sectiona:AddButton({
 
   })
   
-  local Button = Sectiona:AddButton({
+  local Button = Section:AddButton({
     Name = "Korblox (CS)",
     Callback = function()
       
@@ -729,8 +729,8 @@ local Button = Sectiona:AddButton({
     end
   })
 
-local Sectionla = FunStuff:AddSection({Name = "Trash Talk"})
-local Button = Sectionla:AddButton({
+
+local Button = Section:AddButton({
     Name = "Trash Talk",
     Callback = function()
       
