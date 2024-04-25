@@ -1,7 +1,7 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV4/main/Source.lua"))()
 
 local Window = lib:MakeWindow({
-  Title = "Tw and Rave Dh : V1",
+  Title = "TW.RV V1",
   SubTitle = "by : TW.Piece, Rave",
   LoadText = "TwRaveHub",
   Flags = "TwRave Hub | Example.lua"
@@ -17,7 +17,8 @@ local Notify = lib:MakeNotify({
 -- MAIN PAGE
 local Main = Window:MakeTab({Name = "Main", Icon = "Home"})
 local Section = Main:AddSection({"Main Section"})
-local Paragraph = Main:AddParagraph({"Currently Under Development( ALPHA )", "Info"})
+local Paragraph = Main:AddParagraph({"Currently under Development (ALPHA)", "Info"})
+local Section = Main:AddSection({"Official Discord Server"})
 Main:AddDiscordInvite({
   DiscordTitle = "TW.RV",
   DiscordIcon = "rbxassetid://15298567397",
@@ -425,7 +426,7 @@ Aimbot:AddToggle({
 end})
 
 -- MOVEMENT PAGE
-local Movement = Window:MakeTab({Name = "Movement", Icon = "Scripts"})
+local Movement = Window:MakeTab({Name = "Movement", Icon = "Settings"})
 local Section = Movement:AddSection({"Main Section"})
 
 -- ESP BUTTON
@@ -723,7 +724,7 @@ local Button = Fun:AddButton({
 
 local Section = Fun:AddSection({Name = "Trash Talk"})
 local Button = Fun:AddButton({
-    Name = "Trash Talk",
+    Name = "Trash Talk (J)",
     Callback = function()
         local plr = game.Players.LocalPlayer
         repeat wait() until plr.Character
