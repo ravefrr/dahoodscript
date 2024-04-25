@@ -2,7 +2,7 @@ local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/R
 
 local Window = lib:MakeWindow({
   Title = "Tw and Rave Dh : V1",
-  SubTitle = "by : TWRAVE",
+  SubTitle = "by : TW.Piece, Rave",
   LoadText = "TwRaveHub",
   Flags = "TwRave Hub | Example.lua"
 })
@@ -18,7 +18,15 @@ local Notify = lib:MakeNotify({
 local Main = Window:MakeTab({Name = "Main", Icon = "Home"})
 local Section = Main:AddSection({"Main Section"})
 local Paragraph = Main:AddParagraph({"Currently Under Development( ALPHA )", "Info"})
+Main:AddDiscordInvite({
+  DiscordTitle = "TW.RV",
+  DiscordIcon = "rbxassetid://15298567397",
+  DiscordLink = "https://discord.gg/UDhN7UPDCK"
+})
 
+-- MOVEMENT PAGE
+local Movement = Window:MakeTab({Name = "Movement", Icon = "Scripts"})
+local Section = Movement:AddSection({"Main Section"})
 
 -- AIMBOT PAGE
 local Aimbot = Window:MakeTab({Name = "Aimbot", Icon = "Settings"})
@@ -271,7 +279,7 @@ end)
         if enabled and table.find(sex, args[2]) and getnamecallmethod() == "FireServer" and getgenv().Settings.rewrittenmain.Enabled and Plr.Character ~= nil then
  
             -- args[3] = Plr.Character.HumanoidRootPart.Position+(Plr.Character.HumanoidRootPart.Velocity*getgenv().PredictionValue)
-            --[[
+            --
             if getgenv().Settings.rewrittenmain.AIRSHOT == true then
                 if game.Workspace.Players[Plr.Name].Humanoid:GetState() == Enum.HumanoidStateType.Freefall then -- Plr.Character:WaitForChild("Humanoid"):GetState() == Enum.HumanoidStateType.Freefall
  
@@ -285,7 +293,6 @@ end)
             else
                     args[3] = Plr.Character.HumanoidRootPart.Position+(Plr.Character.HumanoidRootPart.Velocity*getgenv().PredictionValue)
             end
-            ]]
             if Prediction == true then
  
             args[3] = Plr.Character[SelectedPart].Position+(Plr.Character[SelectedPart].Velocity*getgenv().PredictionValue)
@@ -422,7 +429,7 @@ Aimbot:AddToggle({
 end})
 
 -- ESP BUTTON
-local Aimbot = Aimbot:AddButton({
+local Aimbot = Movement:AddButton({
     Name = "ESP",
     Callback = function()
         local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -668,38 +675,126 @@ local Aimbot = Aimbot:AddButton({
     end
   })
 
--- MOVEMENT TAB
-local Movement = Window:MakeTab({Name = "Movement", Icon = "Settings"})
-local Section = Movement:AddSection({"Movement Settings"})
-local Slider = Movement:AddSlider({
-    Name = "Walk Speed",
-    MinValue = 1,
-    MaxValue = 10,
-    Default = 5,
-    Increase = 1,
-    Callback = function(Value)
-        
-        -- Function to clamp a value between a minimum and maximum
-local function clamp(value, min, max)
-    return math.min(math.max(value, min), max)
-end
+-- FUN STUFF TAB
+local FunStuff = Window:MakeTab({Name = "Fun Stuff", Icon = "Settings"})
+local Section1 = FunStuff:AddSection({Name = "Modify your Avatar!"})
+local Button = Section1:AddButton({
+    Name = "Tryhard Anims",
+    Callback = function()
+        while true do
+            wait(1)
+            for i, player in ipairs(game.Players:GetChildren()) do
+                local Animate = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):FindFirstChild("Animate")
+                if Animate then
+                    Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+                    Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+                    Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616168032"
+                    Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616163682"
+                    Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083218792"
+                    Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
+                    Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=707829716"
+                end
+                game.Players.LocalPlayer.Character.Humanoid.Jump = false
+            end
+        end
+    end
+})
 
--- Function to set the player's walk speed based on a scale from 1 to 10
-local function setWalkSpeed(player, scale)
-    local minSpeed = 16 -- Minimum walk speed in Roblox
-    local maxSpeed = 80 -- Maximum walk speed in Roblox
+local Button = Section1:AddButton({
+    Name = "Headless (CS)",
+    Callback = function()
 
-    local clampedScale = clamp(scale, 1, 10) -- Clamp the scale between 1 and 10
-    local walkSpeed = minSpeed + ((maxSpeed - minSpeed) / 10) * clampedScale -- Calculate the walk speed
+        getgenv().game.Players.LocalPlayer.Character.Head.Transparency = 1
+        getgenv().game.Players.LocalPlayer.Character.Head.face:Destroy()
+        getgenv().game.Players.LocalPlayer.Character.Head.face:Destroy()
+    end
+    end
 
-    player.Character.Humanoid.WalkSpeed = walkSpeed -- Set the walk speed
-end
+  })
+  
+  local Button = Section1:AddButton({
+    Name = "Korblox (CS)",
+    Callback = function()
+      
+        local ply = game.Players.LocalPlayer
+        local chr = ply.Character
+        chr.RightLowerLeg.MeshId = "902942093"
+        chr.RightLowerLeg.Transparency = "1"
+        chr.RightUpperLeg.MeshId = "http://www.roblox.com/asset/?id=902942096"
+        chr.RightUpperLeg.TextureID = "http://roblox.com/asset/?id=902843398"
+        chr.RightFoot.MeshId = "902942089"
+        chr.RightFoot.Transparency = "1"
+    end
 
--- Example usage: Set the player's walk speed based on a slider value (1 to 10)
-local player = game.Players.LocalPlayer
-local sliderValue = 5 -- Change this value to adjust the walk speed
+    end
+  })
 
-setWalkSpeed(player, sliderValue)
+local Section2 = FunStuff:AddSection({Name = "Trash Talk"})
+local Button = Section2:AddButton({
+    Name = "Trash Talk",
+    Callback = function()
+      
+        local plr = game.Players.LocalPlayer
+        repeat wait() until plr.Character
+        local char = plr.Character
+         
+        local garbage = {
+            "ur bad";
+            "sonney boy";
+            "ez";
+            "my grandma has more skill than you";
+            "seed";
+            "sit son";
+            "trash";
+            "LOL";
+            "LMAO";
+            "imagine being you right now";
+            "xd";
+            "don't try LOL";
+            "you lose";
+            "why do you even try";
+            "I didn't think being this bad was possible";
+            "leave";
+            "no skill";
+            "so sad man.";
+            "bad";
+            "you're nothing";
+            "lol";
+            "so trash";
+            "so bad";
+            "ur salty";
+            "salty";
+            "look he's mad";
+            "cry more";
+            "keep crying";
+            "cry baby";
+            "hahaha I won";
+            "no one likes u";
+            "run 1s seed";
+            "thank you for your time";
+            "you were so close!";
+            "better luck next time!";
+            "rodent";
+            "HAHA";
+            "ill 5-0";
+            "just quit";
+            "time to take out the trash";
+            "did you get worse?";
+            "I'm surprised you haven't quit yet";
+        }
+         
+         
+        function TrashTalk(inputObject, gameProcessedEvent)
+            if inputObject.KeyCode == Enum.KeyCode.J and gameProcessedEvent == false then        
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(
+                garbage[math.random(1,#garbage)],
+                "All"
+            )
+            end
+        end
+         
+        game:GetService("UserInputService").InputBegan:connect(TrashTalk)
+        end
 
     end
   })
