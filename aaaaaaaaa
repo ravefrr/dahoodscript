@@ -679,7 +679,7 @@ local Aimbot = Aimbot:AddButton({
 
 -- FUN STUFF TAB
 local Fun = Window:MakeTab({Name = "Fun Stuff", Icon = "Settings"})
-local Section = Fun:AddSection({Name = "Modify your Avatar! (Need to click again if respawned)"})
+local Section = Fun:AddSection({Name = "Animations + Extras.. (Need to click again if respawned)"})
 local Button = Fun:AddButton({
     Name = "Tryhard Anims",
     Callback = function()
