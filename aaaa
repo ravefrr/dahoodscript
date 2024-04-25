@@ -698,6 +698,15 @@ local Button = Fun:AddButton({
     end
 })
 
+local Button = Fun:AddButton({
+    Name = "Headless (CS)",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.Head.Transparency = 1
+        getgenv().game.Players.LocalPlayer.Character.Head.face:Destroy()
+        getgenv().game.Players.LocalPlayer.Character.Head.face:Destroy()
+    end
+})
+
 
 -- SETTING TAB 
 
