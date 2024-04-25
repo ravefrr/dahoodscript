@@ -428,6 +428,35 @@ end})
 -- MOVEMENT PAGE
 local Movement = Window:MakeTab({Name = "Movement", Icon = "Settings"})
 local Section = Movement:AddSection({"Movement Settings"})
+local Slider = Movement:AddSlider({
+    Name = "Walkspeed",
+    MinValue = 1,
+    MaxValue = 10,
+    Default = 5,
+    Increase = 1,
+    Callback = function(Value)
+      
+    end
+  })
+
+  local Slider = Movement:AddSlider({
+    Name = "Jumppower",
+    MinValue = 1,
+    MaxValue = 10,
+    Default = 5,
+    Increase = 1,
+    Callback = function(Value)
+      
+    end
+  })
+
+  local Button = Movement:AddButton({
+    Name = "Fly",
+    Callback = function()
+      
+    end
+  })
+  
 
 -- ESP BUTTON
 local Section = Aimbot:AddSection({"ESP"})
