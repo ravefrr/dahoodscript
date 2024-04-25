@@ -27,9 +27,9 @@ Main:AddDiscordInvite({
 
 -- AIMBOT PAGE
 local Aimbot = Window:MakeTab({Name = "Aimbot", Icon = "Settings"})
-local Section = Aimbot:AddSection({"Aimbot Section"})
+local Section = Aimbot:AddSection({"Lock Section"})
 local Button = Aimbot:AddButton({
-  Name = "Aimbot",
+  Name = "Lock",
   Callback = function()
     getgenv().Settings = {
     rewrittenmain = {
@@ -427,9 +427,10 @@ end})
 
 -- MOVEMENT PAGE
 local Movement = Window:MakeTab({Name = "Movement", Icon = "Settings"})
-local Section = Movement:AddSection({"Main Section"})
+local Section = Movement:AddSection({"Movement Settings"})
 
 -- ESP BUTTON
+local Section = Aimbot:AddSection({"ESP"})
 local Aimbot = Aimbot:AddButton({
     Name = "ESP",
     Callback = function()
