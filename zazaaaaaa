@@ -710,6 +710,12 @@ local Aimbot = Aimbot:AddButton({
 
 local Teleports = Window:MakeTab({Name = "Teleports", Icon = "Settings"})
 local Section = Teleports:AddSection({"Teleport Section"})
+local Button = Teleports:AddButton({
+    Name = "Double Barrel",
+    Callback = function()
+      
+    end
+  })
 
 
 
