@@ -1,7 +1,7 @@
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RedzLibV4/main/Source.lua"))()
 
 local Window = lib:MakeWindow({
-  Title = "TW.RV V1",
+  Title = "TWR V1",
   SubTitle = "by : TW.Piece, Rave",
   LoadText = "TwRaveHub",
   Flags = "TwRave Hub | Example.lua"
@@ -9,7 +9,7 @@ local Window = lib:MakeWindow({
 
 local Notify = lib:MakeNotify({
   Title = "Successfully Loaded",
-  Text = "TWRAVE Dahood V0.2✅️",
+  Text = "TWR Dahood V0.2✅️",
   Time = 5
 })
 
@@ -20,13 +20,13 @@ local Section = Main:AddSection({"Main Section"})
 local Paragraph = Main:AddParagraph({"Currently under Development (ALPHA)", "Info"})
 local Section = Main:AddSection({"Official Discord Server"})
 Main:AddDiscordInvite({
-  DiscordTitle = "TW.RV",
+  DiscordTitle = "TWR",
   DiscordIcon = "rbxassetid://15298567397",
   DiscordLink = "https://discord.gg/UDhN7UPDCK"
 })
 
 -- AIMBOT PAGE
-local Aimbot = Window:MakeTab({Name = "Aimbot", Icon = "Settings"})
+local Aimbot = Window:MakeTab({Name = "Lock", Icon = "Settings"})
 local Section = Aimbot:AddSection({"Lock Section"})
 local Button = Aimbot:AddButton({
   Name = "Lock",
@@ -466,8 +466,8 @@ local Aimbot = Aimbot:AddButton({
         local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 
-        if playerGui:FindFirstChild("TW.RV") then
-            playerGui:FindFirstChild("TW.RV"):Destroy()
+        if playerGui:FindFirstChild("TWR") then
+            playerGui:FindFirstChild("TWR"):Destroy()
         
             for _, player in ipairs(game.Players:GetPlayers()) do
                 local billboardGui = player.Character and player.Character:FindFirstChild("Head") and player.Character.Head:FindFirstChild("PlayerBillboardGui")
@@ -479,7 +479,7 @@ local Aimbot = Aimbot:AddButton({
         
 
         local screenGui = Instance.new("ScreenGui")
-        screenGui.Name = "TW.RV"
+        screenGui.Name = "TWR"
         screenGui.Parent = playerGui
         screenGui.DisplayOrder = 1
         
@@ -564,7 +564,7 @@ local Aimbot = Aimbot:AddButton({
 
         local titleLabel = Instance.new("TextLabel")
         titleLabel.Name = "TitleLabel"
-        titleLabel.Text = "TW.RV"
+        titleLabel.Text = "TWR"
         titleLabel.TextScaled = true
         titleLabel.Parent = holder
         titleLabel.Size = UDim2.new(1, 0, 0.5, 0) 
@@ -703,6 +703,99 @@ local Aimbot = Aimbot:AddButton({
         end
         
         statusButton.MouseButton1Click:Connect(onStatusButtonClicked)
+    end
+  })
+
+-- TELEPORTS
+
+local Teleports = Window:MakeTab({Name = "Teleports", Icon = "Settings"})
+local Section = Teleports:AddSection({"Teleport Section"})
+
+local Button = Teleports:AddButton({
+    Name = "Double Barrel",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1039.59985, 18.8513641, -256.449951, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Revolver",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-638.75, 18.8500004, -118.175011, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Shotgun",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-578.623657, 5.47212696, -725.131531, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Tactical Shotgun",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(470.877533, 45.1272316, -620.630676, 0.999999821, 0.000604254019, -2.60802135e-08, -0.000604254019, 0.999999821, -8.63220048e-05, -2.60802135e-08, 8.63220048e-05, 1)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Smg",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-577.123413, 5.47666788, -718.031433, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "RPG",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-794.814697, -42.5468521, -932.97998, 5.96046448e-08, 2.91038305e-11, 1, -0.000610388815, 0.999999821, 2.91038305e-11, -0.999999762, -0.000610388815, 5.96046448e-08)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Armor",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-607.978455, 7.44964886, -788.494263, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "PopCorn",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-995, 21.6998043, -153.100037, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Casino 1v1",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-962.72345, 21.2549973, -186.814987, -0.0274876002, 2.91178949e-05, 0.999621451, -5.5798846e-06, 1, -2.92823333e-05, -0.999621451, -6.38268148e-06, -0.0274876002)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Bank",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-402.123718, 21.75, -283.988617, 0.0159681588, -0.000121377925, -0.999872446, -2.60148026e-05, 1, -0.000121808866, 0.999872506, 2.79565484e-05, 0.0159681737)
+    end
+    end
+  })
+
+  local Button = Teleports:AddButton({
+    Name = "Food",
+    Callback = function()
+        getgenv().game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-338.352173, 23.6826477, -297.2146, -0.0060598203, -1.03402984e-08, -0.999981582, -1.61653102e-09, 1, -1.03306892e-08, 0.999981582, 1.55389912e-09, -0.0060598203)
+    end
     end
   })
 
