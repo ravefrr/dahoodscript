@@ -709,6 +709,7 @@ local Aimbot = Aimbot:AddButton({
 -- TELEPORTS
 
 local Teleports = Window:MakeTab({Name = "Teleports", Icon = "Settings"})
+local Section = Teleports:AddSection({"Teleport Section"})
 
 
 
