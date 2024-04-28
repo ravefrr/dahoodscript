@@ -386,8 +386,8 @@ end)
 
 -- LOCK PC (Q)
 
-local Button = Tab:AddButton({
-    Name = "Lock PC ()",
+local Button = Aimbot:AddButton({
+    Name = "Lock PC (Q)",
     Callback = function()
       
         local new = { 
