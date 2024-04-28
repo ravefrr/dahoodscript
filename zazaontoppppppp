@@ -513,114 +513,64 @@ local Button = Aimbot:AddButton({
 Aimbot:AddToggle({
     Name = "Silent Aim",
     Default = false,
-    Callback = function()
+    Callback = function() -- HERE THE SCRIPT IS ON
 
-        _G.PRED = 0.025
-local Aiming = loadstring(game:HttpGet("https://github.com/ravefrr/s1lentaim/raw/main/FOV55"))()
-Aiming.TeamCheck(false)
-Aiming.ShowFOV = true
-Aiming.FOV = 55
+-- Define the Silent Aim toggle
+local Toggle = Aimbot:AddToggle({
+    Name = "Silent Aim",
+    Default = false,
+    Callback = function(Value)
+        if Value then
+            -- Activate Silent Aim
+            _G.PRED = 0.025
+            local Aiming = loadstring(game:HttpGet("https://github.com/ravefrr/s1lentaim/raw/main/FOV55"))()
+            Aiming.TeamCheck(false)
+            Aiming.ShowFOV = true
+            Aiming.FOV = 55
 
-local Workspace = game:GetService("Workspace")
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
- 
-local LocalPlayer = Players.LocalPlayer
-local Mouse = LocalPlayer:GetMouse()
-local CurrentCamera = Workspace.CurrentCamera
- 
-local DaHoodSettings = {
-    SilentAim = true,
-    AimLock = false,
-    Prediction = 0.121,
-    AimLockKeybind = Enum.KeyCode.E
-}
-getgenv().DaHoodSettings = DaHoodSettings
- 
-function Aiming.Check()
-    if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
-        return false
-    end
- 
-    local Character = Aiming.Character(Aiming.Selected)
-    local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
-    local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
- 
-    if (KOd or Grabbed) then
-        return false
-    end
- 
-    return true
-end
- 
-local __index
-__index = hookmetamethod(game, "__index", function(t, k)
+            local Workspace = game:GetService("Workspace")
+            local Players = game:GetService("Players")
+            local LocalPlayer = Players.LocalPlayer
+            local Mouse = LocalPlayer:GetMouse()
 
-    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+            local function Check()
+                -- Implement your checking logic here
+            end
 
-        local SelectedPart = Aiming.SelectedPart
- 
+            local __index
+            __index = hookmetamethod(game, "__index", function(t, k)
+                if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Check()) then
+                    -- Implement Silent Aim logic here
+                end
+                return __index(t, k)
+            end)
 
-        if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
-
-            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
- 
-
-            return (k == "Hit" and Hit or SelectedPart)
+            RunService.RenderStepped:Connect(function()
+                -- Implement RenderStepped logic here
+            end)
+        else
+            -- Deactivate Silent Aim
+            _G.PRED = 0 -- Or any other appropriate value
+            -- If necessary, remove hooks and other connections related to Silent Aim
         end
     end
- 
+})
 
-    return __index(t, k)
-end)
- 
+-- Handling toggle key press
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
- 
+
 mouse.KeyDown:Connect(function(key)
     if key == "v" then
-        if Aiming.Enabled == false then
-        Aiming.Enabled = true
-        else
-        Aiming.Enabled = false
-        end
+        Toggle:Set(not Toggle:Get())
     end
 end)
- 
- 
-RunService.RenderStepped:Connect(function()
- 
-    local ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
-    local Value = tostring(ping)
-    local pingValue = Value:split(" ")
-    local PingNumber = pingValue[1]
- 
-    DaHoodSettings.Prediction = PingNumber / 1000 + _G.PRED
- 
-                    if Aiming.Character.Humanoid.Jump == true and AimlockTarget.Character.Humanoid.FloorMaterial == Enum.Material.Air then
-                    Aiming.TargetPart = "RightFoot"
-                else
-                    Aiming.Character:WaitForChild("Humanoid").StateChanged:Connect(function(new)
- 
-                    if new == Enum.HumanoidStateType.Freefall then
-                    Aiming.TargetPart = "RightFoot"
-                    else
- 
-                    Aiming.TargetPart = Aiming.SelectedPart
- 
-                    end
- 
-                    end)
- 
-                end
- 
-end)
+
  
 
         Toggle:Set(false)
   
-        Toggle:Callback(function(Value)
+        Toggle:Callback(function(Value) -- HERES TOGGLE FALSE
             
             _G.PRED = 0.025
             local Aiming = loadstring(game:HttpGet("https://github.com/ravefrr/s1lentaim/raw/main/ToggleOFF"))()
