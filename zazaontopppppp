@@ -629,11 +629,11 @@ end)
         end)
 end})
 
-local Slider = Tab:AddSlider({
-    Name = "Slider",
+local Slider = Aimbot:AddSlider({
+    Name = "Silent Aim Circle FOV",
     MinValue = 1,
-    MaxValue = 10,
-    Default = 5,
+    MaxValue = 100,
+    Default = 55,
     Increase = 1,
     Callback = function(Value)
       
